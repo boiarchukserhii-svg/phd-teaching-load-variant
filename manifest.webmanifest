@@ -1,0 +1,32 @@
+{
+  "id": "/phd-teaching-load-variant/",
+  "name": "Навантаження - варіант розрахунку",
+  "short_name": "Варіант 50%",
+  "description": "Облік педагогічного навантаження за дисциплінами, кафедрами та факультетами.",
+  "lang": "uk",
+  "start_url": "/phd-teaching-load-variant/",
+  "scope": "/phd-teaching-load-variant/",
+  "display": "standalone",
+  "background_color": "#f5f8f8",
+  "theme_color": "#128e78",
+  "icons": [
+    {
+      "src": "./icon-192.png?v=1-variant",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png?v=1-variant",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable-512.png?v=1-variant",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

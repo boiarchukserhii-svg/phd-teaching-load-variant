@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#128e78">
+  <meta name="application-name" content="Навантаження - варіант розрахунку">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Варіант 50%">
+  <title>Навантаження - варіант розрахунку</title>
+  <link rel="manifest" href="./manifest.webmanifest?v=1-variant">
+  <link rel="icon" href="./icon.svg?v=1-variant" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png?v=1-variant">
+  <link rel="stylesheet" href="./styles.css?v=1-variant">
+</head>
+<body>
+  <a class="skip" href="#content">Перейти до змісту</a>
+  <header class="app-header">
+    <div class="brand"><img src="./nubip-logo.png" alt="Логотип НУБіП України" width="52" height="66">
+      <span>Національний університет біоресурсів<br>і природокористування України</span></div>
+    <p class="eyebrow">НУБіП УКРАЇНИ · АСПІРАНТУРА</p>
+    <h1 tabindex="-1">Навантаження - варіант розрахунку</h1>
+    <p class="variant-description">Окремі фахові дисципліни дев’яти ОНП - 50%. Спільні групи - 100%. Враховано аудиторні заняття та екзамени.</p><p id="academic-year">2026-2027 навчальний рік</p>
+  </header>
+  <main id="content">
+    <section class="panel overview-panel" aria-label="Огляд даних">
+      <div class="summary-grid">
+        <button type="button" class="summary-card" data-view="faculties"><span class="summary-icon" data-icon="building"></span><strong id="faculty-total">-</strong><span>Факультети та ННІ</span></button>
+        <button type="button" class="summary-card" data-view="departments"><span class="summary-icon" data-icon="layers"></span><strong id="department-total">0</strong><span>Кафедри</span></button>
+        <button type="button" class="summary-card" data-view="programs"><span class="summary-icon" data-icon="program"></span><strong id="program-total">0</strong><span>Освітньо-наукові програми</span></button>
+        <button type="button" class="summary-card" data-view="disciplines"><span class="summary-icon" data-icon="book"></span><strong id="discipline-total">0</strong><span>Дисципліни</span></button>
+      </div>
+    </section>
+    <section id="view-programs" class="view" hidden aria-labelledby="programs-title">
+      <div class="section-heading"><h2 id="programs-title" tabindex="-1">Освітньо-наукові програми</h2><span id="program-count" class="muted"></span></div>
+      <form class="panel filters" id="program-filters" role="search">
+        <label class="search-field"><span>Пошук програми</span><input id="program-query" type="search" placeholder="Назва програми або спеціальність…" autocomplete="off"></label>
+        <label><span>Факультет або ННІ</span><select id="program-faculty"><option value="">Усі підрозділи</option></select></label>
+        <button class="reset" type="reset">Скинути</button>
+      </form>
+      <div id="program-list" class="card-list" aria-live="polite"></div>
+    </section>
+    <section id="view-disciplines" class="view" hidden aria-labelledby="disciplines-title">
+      <div class="section-heading"><h2 id="disciplines-title" tabindex="-1">Дисципліни</h2><span id="discipline-count" class="muted"></span></div>
+      <form class="panel filters" id="discipline-filters" role="search">
+        <label class="search-field"><span>Пошук дисципліни</span><input id="discipline-query" type="search" placeholder="Назва дисципліни або код кафедри…" autocomplete="off"></label>
+        <label><span>Факультет або ННІ</span><select id="discipline-faculty"><option value="">Усі підрозділи</option></select></label>
+        <label><span>Освітньо-наукова програма</span><select id="discipline-program"><option value="">Усі програми</option></select></label>
+        <label><span>Кафедра</span><select id="discipline-department"><option value="">Усі кафедри</option></select></label>
+        <label><span>Семестр</span><select id="discipline-semester"><option value="">Усі семестри</option></select></label>
+        <label><span>Тип дисципліни</span><select id="discipline-type"><option value="">Усі типи</option></select></label>
+        <button class="reset" type="reset">Скинути</button>
+      </form>
+      <div id="discipline-list" class="card-list" aria-live="polite"></div>
+    </section>
+    <section id="view-departments" class="view" hidden aria-labelledby="departments-title">
+      <div class="section-heading"><h2 id="departments-title" tabindex="-1">Кафедри</h2><span id="department-count" class="muted"></span></div>
+      <form class="panel filters" id="department-filters" role="search">
+        <label class="search-field"><span>Пошук кафедри</span><input id="department-query" type="search" placeholder="Назва або код кафедри…" autocomplete="off"></label>
+        <label><span>Факультет або ННІ</span><select id="department-faculty"><option value="">Усі підрозділи</option></select></label>
+        <button class="reset" type="reset">Скинути</button>
+      </form>
+      <div id="department-list" class="card-list" aria-live="polite"></div>
+    </section>
+    <section id="view-faculties" class="view" aria-labelledby="faculties-title">
+      <div class="section-heading"><h2 id="faculties-title" tabindex="-1">Факультети та інститути</h2><span id="faculty-count" class="muted"></span></div>
+      <form class="panel filters" id="faculty-filters" role="search">
+        <label class="search-field"><span>Пошук підрозділу</span><input id="faculty-query" type="search" placeholder="Назва факультету або інституту…" autocomplete="off"></label>
+        <label><span>Тип підрозділу</span><select id="faculty-type"><option value="">Усі підрозділи</option><option value="faculty">Факультети</option><option value="institute">Навчально-наукові інститути</option></select></label>
+        <button class="reset" type="reset">Скинути</button>
+      </form>
+      <div id="faculty-list" class="card-list faculty-list" aria-live="polite"></div>
+    </section>
+    <footer>
+      <button type="button" class="install" id="install-app"><span data-icon="download" aria-hidden="true"></span>Встановити застосунок</button>
+      <p>Педагогічне навантаження (аспірантура) · НУБіП України</p>
+      <p id="data-updated" class="muted" hidden></p>
+      <p class="owner">Власник застосунку: <strong>Сергій БОЯРЧУК</strong></p>
+    </footer>
+  </main>
+  <nav class="bottom-nav" aria-label="Основна навігація">
+    <button type="button" id="home-button" aria-current="false" aria-label="Головна - повернутися на початок"><span data-icon="home" aria-hidden="true"></span><span>Головна</span></button>
+    <button type="button" data-view="faculties" class="current" aria-current="page"><span data-icon="building" aria-hidden="true"></span><span>Факультети</span></button>
+    <button type="button" data-view="departments" aria-current="false"><span data-icon="layers" aria-hidden="true"></span><span>Кафедри</span></button>
+    <button type="button" data-view="programs" aria-current="false" aria-label="Освітньо-наукові програми"><span data-icon="program" aria-hidden="true"></span><span>ОНП</span></button>
+    <button type="button" data-view="disciplines" aria-current="false"><span data-icon="book" aria-hidden="true"></span><span>Дисципліни</span></button>
+  </nav>
+  <dialog id="install-help"><h2>Встановлення застосунку</h2>
+    <p><strong>Android:</strong> у Chrome відкрийте меню ⋮ та виберіть «Встановити застосунок» або «Додати на головний екран».</p>
+    <p><strong>iPhone / iPad:</strong> у Safari натисніть «Поділитися» → «На початковий екран».</p>
+    <p><strong>Windows:</strong> у Chrome або Edge скористайтеся кнопкою встановлення в адресному рядку чи меню браузера.</p>
+    <form method="dialog"><button type="submit" class="primary">Зрозуміло</button></form>
+  </dialog>
+  <script src="./data.js?v=1-variant"></script>
+  <script src="./faculty-report.js?v=1-variant"></script>
+  <script src="./app.js?v=1-variant"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
